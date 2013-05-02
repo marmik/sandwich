@@ -1,0 +1,29 @@
+<table class="list-table">
+    <tr>
+        <th colspan="6" class="pager">
+            <?php echo $this->paginationControl($this->paginator); ?>
+        </th>
+    </tr>
+    <tr>
+        <th width="50">Id</th>
+        <th width="150">Email</th>
+        <th>Name</th>
+        <th>Account type</th>
+        <th>Active</th>
+        <th width="150">Actions</th>
+    </tr>
+    <?php foreach($this->paginator as $item):?>
+
+    <tr <?php if($item->active == 0) :?>style="color: grey;"<?php endif;?>>
+        <td><?php echo $item->id;?></td>
+        <td><?php echo $item->email;?></td>
+        <td><?php echo $item->middle.' '.$item->firstname.' '.$item->lastname;?></td>
+        <td><?php echo $item->account_type;?></td>
+        <td><?php echo ($item->active) ? 'Yes' : 'No';?></td>
+        <td>
+            <a href="<?php echo $this->url(array('action'=>'edit','id'=>$item->id));?>">Edit</a>
+        </td>
+    </tr>
+    <?php endforeach;?>
+</table>
+

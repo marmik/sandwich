@@ -1,0 +1,133 @@
+<?php echo $this->searchform;?> 
+
+<script>
+    $(function() {
+            var dates = $( "#from, #to" ).datepicker({
+                    dateFormat: "yy-mm-dd",
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 3,
+                    onSelect: function( selectedDate ) {
+                            var option = this.id == "from" ? "minDate" : "maxDate",
+                                    instance = $( this ).data( "datepicker" ),
+                                    date = $.datepicker.parseDate(
+                                            instance.settings.dateFormat ||
+                                            $.datepicker._defaults.dateFormat,
+                                            selectedDate, instance.settings );
+                            dates.not( this ).datepicker( "option", option, date );
+                    }
+            });
+    });
+</script>
+<div style="float:right">
+    <?php echo $this->deleteform;?> 
+</div>
+
+<table>
+    <tr>
+        <td width="100%"colspan="3">
+            <div>
+                <table>
+                        <tr>
+                            <th colspan="5" class="pager">
+                                <?php echo (isset($this->paginator)) ? $this->paginationControl($this->paginator, 'All'): ""; ?>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div>                               
+                                    &nbsp;
+                                </div> 
+                            </td>
+                        </tr>
+                        <tr>
+                                <th>
+                                        Select to save
+                                </th>
+                                <th>
+                                        Select to delete
+                                </th>
+                                <?php 
+                                    if($this->orderFieldName == 'domainName')
+                                    {
+                                        $domainNameDirection = ($this->orderDirectionField == 'asc') ? 'desc' : 'asc';
+                                    } else 
+                                    {
+                                        $domainNameDirection ='asc';
+                                    }
+                                    
+                                    if($this->orderFieldName == 'dateExpire')
+                                    {
+                                        $dateExpireDirection = ($this->orderDirectionField == 'asc') ? 'desc' : 'asc';
+                                    } else 
+                                    {
+                                        $dateExpireDirection = 'asc';
+                                    }    
+                                
+                                
+                                ?>
+                                
+                                
+                                <th>
+                                    <a href="<?php echo $this->url(array('order'=> 'domainName', 'direction' => $domainNameDirection),'default') ?>">Domain name</a>
+                                </th>
+                                <th>
+                                    <a href="<?php echo $this->url(array('order'=> 'dateExpire', 'direction' => $dateExpireDirection),'default') ?>">Date expire</a> 
+                                </th>
+                        </tr>
+                        
+                        <div id="container">
+                        
+                        <?php if(isset($this->paginator)):?>
+                                <?php foreach ($this->paginator as $domainInfo):?>
+                                        <tr>
+                                                <td>
+                                                    <label for="for_user"></label>
+                                                    <input id="saveit" class="save_dom" type="checkbox" name="for_user" value="<?php echo $domainInfo->id;?>" />
+                                                </td>
+                                                <td>
+                                                    <label for="for_user"></label>
+                                                    <input id="deleteit" class="delete_dom" type="checkbox" name="for_user" value="<?php echo $domainInfo->id;?>" />
+                                                </td>
+                                                <td>
+                                                        <?php echo $domainInfo->content;?>
+                                                </td>
+                                                <td>
+                                                        <?php echo date("d-m-Y",strtotime($domainInfo->date_insert));?>
+                                                </td>
+                                                <td>
+                                                        <input type="button" value="Check" onclick="availableCheck('<?php echo str_replace(".","_",$domainInfo->content);?>')" />
+                                                </td>
+                                                <td>
+                                                    <div class="<?php echo str_replace(".","_",$domainInfo->content);?>">
+                                                        &nbsp;
+                                                    </div>
+                                                </td>
+                                        </tr>
+                                <?php endforeach;?>
+                        <?php endif;?>
+                        <tr>
+                            <th colspan="5" class="pager">
+                                <?php echo (isset($this->paginator)) ? $this->paginationControl($this->paginator, 'All'): ""; ?>
+                            </th>
+                        </tr>
+                        <tr>             
+                        </div>
+                                     <tr>
+                                            <td>
+                                                <input type="button" value="Save" onclick="saveSelected()" />
+                                            </td>
+                                            <td>
+                                                <input type="button" value="Delete" onclick="deleteSelected()" />
+                                            </td>
+                                            <td colspan="2">
+                                                <div class="textFor">
+                                                    &nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
