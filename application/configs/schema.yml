@@ -1,8 +1,35 @@
-actAs: []
+actAs: 
+  Timestampable:
+    created:
+      name: created_at
+      type: timestamp
+      format: Y-m-d H:i:s
+    updated:
+      name: updated_at
+      type: timestamp
+      format: Y-m-d H:i:s
 options:
   type: MyISAM
   collate: utf8_general_ci
   charset: utf8
+  
+Pages:
+  tableName: pages
+  options:
+    type: MyISAM
+    collate: utf8_general_ci
+    charset: utf8
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    lang: string(32)
+    page_type: string(128)
+    page_content: text
+    
+    
+      
 
 User:
   tableName: user_users
@@ -31,7 +58,7 @@ User:
       type: enum
       values:
         - CLIENT
-        - PSYCHOLOGIST
+        - USER
         - ADMIN
       default: CLIENT
   indexes:
@@ -41,30 +68,3 @@ User:
     account_type:
       fields: [account_type]
 
-Domains:
-  tableName: list
-  options:
-    type: MyISAM
-    collate: utf8_general_ci
-    charset: utf8
-  columns: 
-    id:
-      autoincrement: true
-      primary: true
-      type: integer(11)
-    content: string(128)
-    date_insert: date
-
-Usersave:
-  tableName: user_saved
-  options:
-    type: MyISAM
-    collate: utf8_general_ci
-    charset: utf8
-  columns:
-    id:
-      autoincrement: true
-      type: integer(11)
-      primary: true
-    domain_name: string(128)
-    date_saved: date
