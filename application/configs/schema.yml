@@ -1,22 +1,15 @@
 actAs: []
 options:
-<<<<<<< HEAD
-  type: INNODB
-=======
   type: MyISAM
->>>>>>> 1667b1a54c052db39d48744740030250325f3c98
   collate: utf8_general_ci
   charset: utf8
 
 User:
   tableName: user_users
-<<<<<<< HEAD
-=======
   options:
     type: MyISAM
     collate: utf8_general_ci
     charset: utf8
->>>>>>> 1667b1a54c052db39d48744740030250325f3c98
   columns:
     id:
       primary: true
@@ -46,9 +39,6 @@ User:
       fields: [email]
       type: unique
     account_type:
-<<<<<<< HEAD
-      fields: [account_type]
-=======
       fields: [account_type]
 
 Domains:
@@ -78,5 +68,3 @@ Usersave:
       primary: true
     domain_name: string(128)
     date_saved: date
-    
->>>>>>> 1667b1a54c052db39d48744740030250325f3c98
