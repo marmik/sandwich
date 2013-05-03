@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.login-box-container {
+}
+
+.login-box {
+    margin: auto;
+    width: 240px;
+    text-align: left;
+    border: 1px solid silver;
+    padding: 4px;
+}
+
+.login-box h2 {
+    padding: 2px;
+    margin: 0;
+}

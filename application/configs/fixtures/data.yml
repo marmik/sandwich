@@ -1,0 +1,15 @@
+Mapper_User:
+  User_Admin:
+    email: admin
+    password: 123123
+    firstname: Admin
+    middle: Mr.
+    lastname: Lastname
+    sex: M
+    birth_date: 1987-12-14
+    street: Some Street
+    house_number: 32/2
+    zipcode: 454732
+    city: Timbuktu
+    active: true
+    account_type: ADMIN

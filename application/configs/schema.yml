@@ -1,0 +1,38 @@
+actAs: []
+options:
+  type: INNODB
+  collate: utf8_general_ci
+  charset: utf8
+
+User:
+  tableName: user_users
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    email: string(64)
+    password: string(32)
+    firstname: string(255)
+    middle: string(255)
+    lastname: string(255)
+    sex: string(1)
+    birth_date: date
+    street: string(255)
+    house_number: string(16)
+    zipcode: string(64)
+    city: string(64)
+    active: boolean
+    account_type:
+      type: enum
+      values:
+        - CLIENT
+        - PSYCHOLOGIST
+        - ADMIN
+      default: CLIENT
+  indexes:
+    unique_email:
+      fields: [email]
+      type: unique
+    account_type:
+      fields: [account_type]

@@ -1,0 +1,36 @@
+<?php echo $this->doctype().PHP_EOL; ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<?php $this->headLink()->appendStylesheet('/css/backend/main.css');
+		echo $this->headTitle('Administration').PHP_EOL.
+			 $this->headMeta().PHP_EOL.
+			 $this->headLink().PHP_EOL.
+			 $this->headStyle().PHP_EOL.
+             $this->dojo() . PHP_EOL .
+			 $this->headScript();
+	?>
+
+</head>
+<body class="claro">
+    <div id="container">
+        <div id="header">
+            <div style="float: left;">
+                <?php echo $this->layout()->header; ?>
+                <?php echo $this->flashMessenger();?>
+            </div>
+            <div style="float: right;"><a href="<?php echo $this->url(array('module'=>'frontend','controller'=>'user','action'=>'logout'));?>">Sign Out</a></div>
+        </div>
+        <div id="center">
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td id="main_menu" valign="top"><?php echo $this->navigation()->menu(); ?></td>
+                    <td id="content" valign="top">
+                        <?php echo $this->layout()->content; ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer"><?php echo $this->layout()->footer; ?></div>
+    </div>
+</body>
+</html>
