@@ -1,0 +1,426 @@
+actAs: 
+  Timestampable:
+    created:
+      name: created_at
+      type: timestamp
+      format: Y-m-d H:i:s
+    updated:
+      name: updated_at
+      type: timestamp
+      format: Y-m-d H:i:s
+options:
+  type: INNODB
+  collate: utf8_general_ci
+  charset: utf8
+
+User:
+  tableName: user_users
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    email: string(64)
+    password: string(32)
+    firstname: string(255)
+    middle: string(8)
+    lastname: string(255)
+    sex: string(1)
+    birth_date: date
+    street: string(255)
+    house_number: string(16)
+    zipcode: string(64)
+    active: boolean
+    role: string(16)
+  indexes:
+    unique_email:
+      fields: [email]
+      type: unique
+      
+Data:
+  tableName: data_nout
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    serial_number: string(64)
+    brand: string(32)
+    model: string(64)
+    screen_size: integer(4)
+    overall_cond: string(64)
+    keyboard_cond: string(64)
+    screen_cond: string(64)
+    case_cond: string(64)
+    battery: string(16)
+    psu: string(16)
+    windows_key: string(32)
+    webcam: string(16)
+
+Names:
+  tableName: name_nout
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    name: string(64)
+    p_id: integer
+  
+Notebooks:
+  tableName: all_nb
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    batch_partia: string(64)
+    user_id: integer(11)
+    ebay_yes_no: string(11)
+    price1: string(64)
+    price_2: string(64)
+    auction_type: string(64)
+    buyer_name: string(64)
+    buyer_family: string(64)
+    buyer_company: string(64)
+    adress_1: string(64)
+    adress_2: string(64)
+    postcode: string(64)
+    country: string(64)
+    price: integer(11)
+    barcode_id: integer(11)
+    ref: string(64)
+    replacement_value: double
+    sell_price_ebay: integer(11)
+    item_type: string(64)
+    brand: string(64)
+    model: string(64)
+    cause_of_damage: string(64)
+    report_date: date
+    cpu_type: string(32)
+    speed: integer(5)
+    ram: string(5)
+    hdd: string(11)
+    drive_yes_no: string(11)
+    color: string(32)
+    screen_size: string(11)
+    screen_appearance: string(64)
+    memory_cover: string(64)
+    hdd_caddy: string(64)
+    hdd_connector: string(64)
+    hard_drive_cover_present: string(64)
+    optical: string(32)
+    optical_type: string(64)
+    optical_bezel_plastic: string(32)
+    battery: string(32)
+    psu: string(32)
+    power_button: string(32)
+    power_button_panel: string(32)
+    hinge_covers_present: string(64)
+    hinge_condition: string(64)
+    windows_key: string(32)
+    top_casing_condition: string(64)
+    bottom_casing_condition: string(64)
+    are_all_base_screws_visible: string(64)
+    bezel_condition: string(64)
+    all_bezel_rubbers_present: string(64)
+    lid_catch_condition: string(64)
+    keyboard_condition: string(64)
+    keyboard_surround_condition: string(64)
+    palmrest_condition: string(64)
+    touchpad: string(64)
+    fingerprint_reader: string(64)
+    webcam: string(64)
+    did_it_power_up_to_bios_on_testing: string(64)
+    external_keyboard_used: string(64)
+    external_screen_used: string(64)
+    other_comments: text
+  relations:
+    User:
+      local: id
+      class: User
+      foreignAlias: Notebooks
+      foreign: user_id
+      type: one
+      foreignType: many
+    
+Model:
+  tableName: models
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    brand_id: 
+      type: integer
+      notnull: true
+    title: 
+      type: string(64)
+      notnull: true
+      
+      
+Brand:
+  tableName: brands
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    title: 
+      type: string(64)
+      unique: true
+      notnull: true
+  relations:
+    Models:
+      local: id
+      class: Model
+      foreignAlias: Brand
+      foreign: brand_id
+      type: many
+      foreignType: one
+  
+  
+Sample:
+  tableName: samples
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    val_num: 
+      type: string(64)
+      notnull: true
+      
+      
+Part:
+  tableName: parts
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    tip: string(20)
+    pod_tip:
+      type: string(20)
+      notnull: true
+    user_id: integer
+    brand: string(20)
+    model: string(20)
+    ref_number: string(20)
+    memory_brand: string(20)
+    ddr_type: string(20)
+    size: integer(20)
+    hdd_brand: string(20)
+    cpu_tip: string(20)
+    cpu_speed: string(20)
+    optical_tip: string(20)
+    optical_bezel: string(20)
+    mb_socket_tip: string(20)
+    dimm_modules_quantity: string(20)
+    touchpad: string(20)
+    fingerprint: string(20)
+    volts: string(20)
+    ampers: string(20)
+    lid_size: string(20)
+    webcam_spot: string(20)
+    webcam_cable: string(20)
+    hinges: string(20)
+    wifi_cable: string(20)
+    screen_size: string(20)
+    screen_tip: string(20)
+    screen_reso: string(20)
+    working: string(5)
+    descript: text
+    
+    
+Tested:
+  tableName: mold_test
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    user_id: integer
+    brand: string(20)
+    model: string(20)
+    ref_number: string(20)
+    ddr_type: string(20)
+    ddr_size: integer(20)
+    hdd_size: integer(20)
+    cpu_tip: string(20)
+    cpu_speed: string(20)
+    screen_size: string(20)
+    screen_cond: string(20)
+    faulty: text
+    after_massta: text
+    descript: text
+    
+    
+Laptops:
+  tableName: new_nb
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    batch_partia: string(64)
+    user_id: integer(11)
+    ebay_yes_no: string(11)
+    price1: string(64)
+    price_2: string(64)
+    auction_type: string(64)
+    buyer_name: string(64)
+    buyer_family: string(64)
+    buyer_company: string(64)
+    adress_1: string(64)
+    adress_2: string(64)
+    postcode: string(64)
+    country: string(64)
+    price: integer(11)
+    evs: integer(11)
+    replacement_value: double
+    sell_price_ebay: integer(11)
+    item_type: string(64)
+    brand: string(64)
+    model: string(64)
+    cause_of_damage: string(64)
+    report_date: date
+    cpu_type: string(32)
+    speed: integer(5)
+    ram: string(11)
+    ram_type: string(11)
+    hdd: string(11)
+    drive_yes_no: string(11)
+    color: string(32)
+    screen_size: string(11)
+    screen_appearance: string(64)
+    memory_cover: string(64)
+    hdd_caddy: string(64)
+    hdd_connector: string(64)
+    hard_drive_cover_present: string(64)
+    optical: string(32)
+    optical_type: string(64)
+    optical_bezel_plastic: string(32)
+    battery: string(32)
+    psu: string(32)
+    power_button: string(32)
+    power_button_panel: string(32)
+    hinge_covers_present: string(64)
+    hinge_condition: string(64)
+    windows_key: string(32)
+    top_casing_condition: string(64)
+    bottom_casing_condition: string(64)
+    are_all_base_screws_visible: string(64)
+    bezel_condition: string(64)
+    all_bezel_rubbers_present: string(64)
+    lid_catch_condition: string(64)
+    keyboard_condition: string(64)
+    keyboard_surround_condition: string(64)
+    palmrest_condition: string(64)
+    touchpad: string(64)
+    fingerprint_reader: string(64)
+    webcam: string(64)
+    did_it_power_up_to_bios_on_testing: string(64)
+    external_keyboard_used: string(64)
+    external_screen_used: string(64)
+    other_comments: text
+    curr_locat: string(64)
+    pre_test: string(64)
+    after_repair: string(64)
+    pri4ina_smerti: varchar(64)
+    spizd1: varchar(64)
+    spizd2: varchar(64)
+    spizd3: varchar(64)
+    nr_stoiki: string(20)
+    nr_polki: string(20)
+  relations:
+    User:
+      local: id
+      class: User
+      foreignAlias: Laptops
+      foreign: user_id
+      type: one
+      foreignType: many
+    
+
+Zapchasti:
+  tableName: zap4ast
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    brand: string(40)
+    model: string(40)
+    tip: string(40)
+    pod_tip:
+      type: string(40)
+      notnull: true
+    user_id: integer
+    laptop_id: integer
+    ref_number: string(20)
+    part_num: string(40)
+    add_info: string(40)
+    working: string(5)
+    descript: text   
+  relations:
+    Laptops:
+      local: id
+      class: User
+      foreignAlias: Zapchasti
+      foreign: laptop_id
+      type: one
+      foreignType: many  
+    User:
+      local: id
+      class: User
+      foreignAlias: Zapchasti
+      foreign: user_id
+      type: one
+      foreignType: many
+    
+           
+Motherboards:
+  tableName: mbs
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    batch_partia: date
+    user_id: integer(11)
+    zen: integer(11)
+    brand: string(64)
+    part_num: string(64)
+    cpu_socker_type: string(64)
+    cpu_socket_ok: string(64)
+    ram_socket: string(64)
+    optical_slot: string(64)
+    hdd_slot: string(64)
+    vga_slot: string(64)
+    kb_slot: string(64)
+    lcd_slot: string(64)
+    nb_type: string(64)
+    nb_ok: string(64)
+    sb_type: string(64)
+    sb_ok: string(64)
+    videocard_type: string(64)
+    videocard_ok: string(64)
+    diagnostics: string(64)
+    repairs_done: text
+    parts_replaced: text
+    final_note: text
+    other_comments: text
+    where_master: string(64)
+    when_given: date
+  relations:
+    User:
+      local: id
+      class: User
+      foreignAlias: Motherboards
+      foreign: user_id
+      type: one
+      foreignType: many
+    
+    
+    

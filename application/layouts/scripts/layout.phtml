@@ -1,10 +1,17 @@
 <?php echo $this->doctype() . PHP_EOL; ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html lang="en">
 	<head>
 	<?php
         $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf8'); 
-	$this->headLink()->appendStylesheet('/css/frontend/main.css');
-
+//	$this->headLink()->appendStylesheet('/css/frontend/main.css');
+        $this->headLink()->appendStylesheet('/css/frontend/old.css');
+	$this->headLink()->appendStylesheet('/css/frontend/style_sheet.css');
+        $this->headLink()->appendStylesheet('/css/backend/style_sheet.css');
+        $this->headLink()->appendStylesheet('/css/frontend/jquery-ui-1.8.19.custom.css');
+	$this->headLink()->appendStylesheet('/css/backend/jquery-ui-1.8.19.custom.css');
+	$this->headScript()->prependFile("/js/jquery/jquery-ui-1.8.19.js");
+	$this->headScript()->prependFile("/js/jquery/jquery-1.7.2.js");
+        $this->headScript()->prependFile("/js/jquery/ajax.js");
 	echo $this->headTitle('Default Frontend') . PHP_EOL .
 		 $this->headMeta() . PHP_EOL .
 		 $this->headLink() . PHP_EOL .
