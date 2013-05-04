@@ -86,7 +86,7 @@ abstract class Mapper_Base_User extends Doctrine_Record
              'values' => 
              array(
               0 => 'CLIENT',
-              1 => 'PSYCHOLOGIST',
+              1 => 'USER',
               2 => 'ADMIN',
              ),
              'default' => 'CLIENT',
@@ -114,6 +114,20 @@ abstract class Mapper_Base_User extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             'created' => 
+             array(
+              'name' => 'created_at',
+              'type' => 'timestamp',
+              'format' => 'Y-m-d H:i:s',
+             ),
+             'updated' => 
+             array(
+              'name' => 'updated_at',
+              'type' => 'timestamp',
+              'format' => 'Y-m-d H:i:s',
+             ),
+             ));
+        $this->actAs($timestampable0);
     }
 }

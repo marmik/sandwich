@@ -53,6 +53,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $connection = Doctrine_Manager::connection($doctrineConfig['dsn'], 'doctrine');
         $connection->setAttribute(Doctrine::ATTR_USE_NATIVE_ENUM, true);
+        $connection->setCharset('utf8');
         return $connection;
     }
 
@@ -71,5 +72,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         }
 
 
+    }
+    
+    protected function _initFrontControllerOutput() {
+
+        $this->bootstrap('FrontController');
+        $frontController = $this->getResource('FrontController');
+
+        $response = new Zend_Controller_Response_Http;
+        $response->setHeader('Content-Type', 'text/html; charset=UTF-8', true);
+        $frontController->setResponse($response);
+
+        $frontController->setParam('useDefaultControllerAlways', false);
+
+        return $frontController;
     }
 }
