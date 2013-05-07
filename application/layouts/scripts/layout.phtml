@@ -1,9 +1,10 @@
 <?php echo $this->doctype() . PHP_EOL; ?>
 <html lang="en">
-    <head>
+<head>
     <?php
     $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf8'); 
-//	$this->headLink()->appendStylesheet('/css/frontend/main.css');
+    //	$this->headLink()->appendStylesheet('/css/frontend/main.css');
+
     $this->headLink()->appendStylesheet('/css/frontend/old.css');
     $this->headLink()->appendStylesheet('/css/frontend/style_sheet.css');
     $this->headLink()->appendStylesheet('/css/backend/style_sheet.css');
@@ -20,30 +21,46 @@
              $this->headScript();
     ?>
 
-    </head>
+</head>
 
-    <body class="claro">
-    <?php echo $this->flashMessenger();?>
-        <div id="header">
-            <div class="container">
-                <div id="logo"><a href="/"></a></div>
-            </div>
+<body class="claro">
+<?php echo $this->flashMessenger();?>
+    <div id="header">
+        <div class="container">
+            <div id="logo"><a href="/"></a></div>
         </div>
+    </div>
 
-        <div id="wrapper">
-            <div id="container" class="container">
-                <div id="main" class="span-18 colborder">
-                    <?php echo $this->navigation()->menu(); ?>
-                    <div class="flash-messages"><?php echo $this->layout()->top; ?></div>
+
+    <div id="wrapper">
+        <div id="container" class="container">
+            <div id="main" class="span-18 colborder">
+                <div class="head">
+                    <div class="btn">
+                        <div class="lang">
+                            <a href=""><img src="/images/default/md.png" /></a>
+                            <a href=""><img src="/images/default/ru.png" /></a>                                                
+                        </div>
+                        <div class="sbox"></div>
+                    </div>
+
+                    <div class="menupanel">
+                        <?php echo $this->navigation()->menu()->setUlClass('menu'); ?>
+                    </div>
+                </div>
+
+                <div class="flash-messages"><?php echo $this->layout()->top; ?></div>
+                <div class="content">
                     <?php echo $this->layout()->content; ?>
                 </div>
-                <div id="sidebox" class="span-5 last">
+            </div>
+            <div id="sidebox" class="span-5 last">
                     <?php echo $this->layout()->left; ?>
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="clear"></div>
-        <div id="footer"><?php echo $this->layout()->footer; ?></div>
-    </body>
+    <div class="clear"></div>
+    <div id="footer"><?php echo $this->layout()->footer; ?></div>
+</body>
 </html>
