@@ -1,48 +1,49 @@
 <?php echo $this->doctype() . PHP_EOL; ?>
 <html lang="en">
-	<head>
-	<?php
-        $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf8'); 
+    <head>
+    <?php
+    $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf8'); 
 //	$this->headLink()->appendStylesheet('/css/frontend/main.css');
-        $this->headLink()->appendStylesheet('/css/frontend/old.css');
-	$this->headLink()->appendStylesheet('/css/frontend/style_sheet.css');
-        $this->headLink()->appendStylesheet('/css/backend/style_sheet.css');
-        $this->headLink()->appendStylesheet('/css/frontend/jquery-ui-1.8.19.custom.css');
-	$this->headLink()->appendStylesheet('/css/backend/jquery-ui-1.8.19.custom.css');
-	$this->headScript()->prependFile("/js/jquery/jquery-ui-1.8.19.js");
-	$this->headScript()->prependFile("/js/jquery/jquery-1.7.2.js");
-        $this->headScript()->prependFile("/js/jquery/ajax.js");
-	echo $this->headTitle('Default Frontend') . PHP_EOL .
-		 $this->headMeta() . PHP_EOL .
-		 $this->headLink() . PHP_EOL .
-		 $this->headStyle() . PHP_EOL .
-         $this->dojo() . PHP_EOL .
-		 $this->headScript();
-	?>
+    $this->headLink()->appendStylesheet('/css/frontend/old.css');
+    $this->headLink()->appendStylesheet('/css/frontend/style_sheet.css');
+    $this->headLink()->appendStylesheet('/css/backend/style_sheet.css');
+    $this->headLink()->appendStylesheet('/css/frontend/jquery-ui-1.8.19.custom.css');
+    $this->headLink()->appendStylesheet('/css/backend/jquery-ui-1.8.19.custom.css');
+    $this->headScript()->prependFile("/js/jquery/jquery-ui-1.8.19.js");
+    $this->headScript()->prependFile("/js/jquery/jquery-1.7.2.js");
+    $this->headScript()->prependFile("/js/jquery/ajax.js");
+    echo $this->headTitle('Default Frontend') . PHP_EOL .
+             $this->headMeta() . PHP_EOL .
+             $this->headLink() . PHP_EOL .
+             $this->headStyle() . PHP_EOL .
+     $this->dojo() . PHP_EOL .
+             $this->headScript();
+    ?>
 
-	</head>
+    </head>
 
-	<body class="claro">
-        <?php echo $this->flashMessenger();?>
-		<div id="header">
-			<div class="container">
-				<div id="logo"><a href="/"></a></div>
-			</div>
-		</div>
+    <body class="claro">
+    <?php echo $this->flashMessenger();?>
+        <div id="header">
+            <div class="container">
+                <div id="logo"><a href="/"></a></div>
+            </div>
+        </div>
 
-		<div id="wrapper">
-			<div id="container" class="container">
-				<div id="main" class="span-18 colborder">
-					<div class="flash-messages"><?php echo $this->layout()->top; ?></div>
-					<?php echo $this->layout()->content; ?>
-				</div>
-				<div id="sidebox" class="span-5 last">
-					<?php echo $this->layout()->left; ?>
-				</div>
-			</div>
-		</div>
+        <div id="wrapper">
+            <div id="container" class="container">
+                <div id="main" class="span-18 colborder">
+                    <?php echo $this->navigation()->menu(); ?>
+                    <div class="flash-messages"><?php echo $this->layout()->top; ?></div>
+                    <?php echo $this->layout()->content; ?>
+                </div>
+                <div id="sidebox" class="span-5 last">
+                    <?php echo $this->layout()->left; ?>
+                </div>
+            </div>
+        </div>
 
-		<div class="clear"></div>
-		<div id="footer"><?php echo $this->layout()->footer; ?></div>
-	</body>
+        <div class="clear"></div>
+        <div id="footer"><?php echo $this->layout()->footer; ?></div>
+    </body>
 </html>
